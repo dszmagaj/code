@@ -1,0 +1,43 @@
+import mean_var_std
+from unittest import main
+
+print(mean_var_std.calculate([0,1,2,3,4,5,6,7,8]))
+
+main(module='test_module', exit=False)
+
+import numpy as np
+
+def calculate(list):
+    if(len(list) != 9):
+      raise ValueError ("List must contain nine numbers.")
+  
+    lista = np.array(list)
+    print(list)
+
+    mean_rows = [lista[[0,1,2]].mean(), lista[[3,4,5]].mean(), lista[[6,7,8]].mean()]
+    mean_columns = [lista[[0,3,6]].mean(), lista[[1,4,7]].mean(), lista[[2,5,8]].mean()]
+    
+    var_rows = [lista[[0,1,2]].var(), lista[[3,4,5]].var(), lista[[6,7,8]].var()]
+    var_columns = [lista[[0,3,6]].var(), lista[[1,4,7]].var(), lista[[2,5,8]].var()]
+
+    std_rows = [lista[[0,1,2]].std(), lista[[3,4,5]].std(), lista[[6,7,8]].std()]
+    std_columns = [lista[[0,3,6]].std(), lista[[1,4,7]].std(), lista[[2,5,8]].std()]
+
+    max_rows = [lista[[0,1,2]].max(), lista[[3,4,5]].max(), lista[[6,7,8]].max()]
+    max_columns = [lista[[0,3,6]].max(), lista[[1,4,7]].max(), lista[[2,5,8]].max()]
+
+    min_rows = [lista[[0,1,2]].min(), lista[[3,4,5]].min(), lista[[6,7,8]].min()]
+    min_columns = [lista[[0,3,6]].min(), lista[[1,4,7]].min(), lista[[2,5,8]].min()]
+
+    sum_rows = [lista[[0,1,2]].sum(), lista[[3,4,5]].sum(), lista[[6,7,8]].sum()]
+    sum_columns = [lista[[0,3,6]].sum(), lista[[1,4,7]].sum(), lista[[2,5,8]].sum()]
+  
+  
+    return {
+      'mean': [mean_columns, mean_rows,lista.mean()], 
+      'variance': [var_columns, var_rows, lista.var()],
+      'standard deviation': [std_columns, std_rows, lista.std()],
+      'max': [max_columns, max_rows, lista.max()],
+      'min': [min_columns, min_rows, lista.min()],
+      'sum': [sum_columns, sum_rows, lista.sum()]
+    }
